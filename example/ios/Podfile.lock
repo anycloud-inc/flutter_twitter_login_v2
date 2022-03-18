@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - twitter_login_v2 (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - twitter_login_v2 (from `.symlinks/plugins/twitter_login_v2/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  twitter_login_v2:
+    :path: ".symlinks/plugins/twitter_login_v2/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  twitter_login_v2: 512958f3668c7f521c3ea784d020c1241d654be7
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.11.2
