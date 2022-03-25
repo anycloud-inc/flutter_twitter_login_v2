@@ -16,7 +16,7 @@ twitter_login_v2: ^0.0.1
 
 [/example/android/app/src/main/AndroidManifest.xm](https://github.com/anycloud-inc/flutter_twitter_login_v2/blob/master/example/android/app/src/main/AndroidManifest.xml)
 
-You need to replace the scheme with a Callback URLs.
+You need to replace {example} with a Callback URLs.
 
 ```xml
 <intent-filter>
@@ -25,7 +25,7 @@ You need to replace the scheme with a Callback URLs.
   <category android:name="android.intent.category.BROWSABLE" />
   <!-- Accepts URIs that begin with "example://gizmos” -->
   <!-- Registered Callback URLs in TwitterApp -->
-  <data android:scheme="example"
+  <data android:scheme="{example}"
         android:host="gizmos" /> <!-- host is option -->
 </intent-filter>
 ```
@@ -48,7 +48,7 @@ Flutter wiki: [Upgrading pre 1.12 Android projects.](https://github.com/flutter/
 
 [/example/ios/Runner/Info.plist](https://github.com/anycloud-inc/flutter_twitter_login_v2/blob/master/example/ios/Runner/Info.plist)
 
-You need to replace the example with a Callback URLs.
+You need to replace {example} with a Callback URLs.
 
 ```xml
 <key>CFBundleURLTypes</key>
@@ -61,7 +61,7 @@ You need to replace the example with a Callback URLs.
     <key>CFBundleURLSchemes</key>
     <array>
       <!-- Registered Callback URLs in TwitterApp -->
-      <string>example</string>
+      <string>{example}</string>
     </array>
   </dict>
 </array>
