@@ -1,5 +1,5 @@
 name: twitter_login_v2
-description: A new flutter plugin project.
+description: Flutter Twitter Login Plugin. Library for login with Twitter Oauth V2.
 version: 0.0.1
 author:
 homepage:
