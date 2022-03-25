@@ -32,8 +32,8 @@ You need to replace the scheme with a Callback URLs.
 
 ### Supporting the new Android plugins APIs
 
-If you flutter created your project prior to version 1.12, you need to make sure to update your project in order to use the new Java Embedding API.  
-Make use you have flutter_embedding v2 enabled. Add the following code on the manifest file inside <application> tag to enable embedding.  
+If you created your project with a version prior to 1.12, you will need to update your project to use the new Java Embedding API.
+Make sure flutter_embedding v2 is enabled. Add the following code on the manifest file inside <application> tag to enable embedding.  
 Flutter wiki: [Upgrading pre 1.12 Android projects.](https://github.com/flutter/flutter/wiki/Upgrading-pre-1.12-Android-projects)
 
 ```xml
