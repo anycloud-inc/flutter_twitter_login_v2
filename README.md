@@ -14,7 +14,7 @@ twitter_login_v2: ^0.0.1
 
 ### Add intent filters for incoming links
 
-[/example/android/app/src/main/AndroidManifest.xm](https://github.com/0maru/twitter_login/blob/master/example/android/app/src/main/AndroidManifest.xml)
+[/example/android/app/src/main/AndroidManifest.xm](https://github.com/anycloud-inc/flutter_twitter_login_v2/blob/master/example/android/app/src/main/AndroidManifest.xml)
 
 You need to replace the scheme with a Callback URLs.
 
@@ -46,7 +46,7 @@ Flutter wiki: [Upgrading pre 1.12 Android projects.](https://github.com/flutter/
 
 ### Add URLScheme
 
-[/example/ios/Runner/Info.plist](https://github.com/0maru/twitter_login/blob/master/example/ios/Runner/Info.plist#L21)
+[/example/ios/Runner/Info.plist](https://github.com/anycloud-inc/flutter_twitter_login_v2/blob/master/example/ios/Runner/Info.plist)
 
 You need to replace the example with a Callback URLs.
 
