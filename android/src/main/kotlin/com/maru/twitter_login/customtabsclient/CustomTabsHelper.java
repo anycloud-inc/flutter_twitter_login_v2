@@ -1,4 +1,4 @@
-package com.example.twitter_login_v2.customtabsclient;/*
+package com.maru.twitter_login.customtabsclient;/*
  * Copyright (c) 2015 Zhang Hai <Dreaming.in.Code.ZH@Gmail.com>
  * All Rights Reserved.
  */

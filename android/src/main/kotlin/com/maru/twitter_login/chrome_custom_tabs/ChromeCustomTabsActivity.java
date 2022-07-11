@@ -1,4 +1,4 @@
-package com.example.twitter_login_v2.chrome_custom_tabs;
+package com.maru.twitter_login.chrome_custom_tabs;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,8 +8,8 @@ import android.os.Bundle;
 import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.browser.customtabs.CustomTabsSession;
 
-import com.example.twitter_login_v2.R;
-import com.example.twitter_login_v2.customtabsclient.CustomTabsHelper;
+import com.maru.twitter_login.R;
+import com.maru.twitter_login.customtabsclient.CustomTabsHelper;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -39,11 +39,11 @@ public class ChromeCustomTabsActivity extends Activity implements MethodChannel.
         assert bundle != null;
 
         String managerId = bundle.getString("managerId");
-        manager = (ChromeSafariBrowserManager) ChromeSafariBrowserManager.shared.get(managerId);
+        manager = ChromeSafariBrowserManager.shared.get(managerId);
 
-        //　Create a methodChannel for each Activity.
+        // Create a methodChannel for each Activity.
         id = bundle.getString("id");
-        channel = new MethodChannel(manager.plugin.getMessenger(), "twitter_login_v2/auth_browser_" + id);
+        channel = new MethodChannel(manager.plugin.getMessenger(), "twitter_login/auth_browser_" + id);
         channel.setMethodCallHandler(this);
 
         final String url = bundle.getString("url");

@@ -1,4 +1,4 @@
-package com.example.twitter_login_v2.customtabsclient;
+package com.maru.twitter_login.customtabsclient;
 
 import android.app.Service;
 import android.content.Intent;

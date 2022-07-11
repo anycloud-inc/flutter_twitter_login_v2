@@ -1,4 +1,4 @@
-package com.example.twitter_login_v2.chrome_custom_tabs;
+package com.maru.twitter_login.chrome_custom_tabs;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-import com.example.twitter_login_v2.TwitterLoginPlugin;
+import com.maru.twitter_login.TwitterLoginPlugin;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -28,7 +28,7 @@ public class ChromeSafariBrowserManager implements MethodChannel.MethodCallHandl
     public ChromeSafariBrowserManager(final TwitterLoginPlugin plugin) {
         this.id = UUID.randomUUID().toString();
         this.plugin = plugin;
-        channel = new MethodChannel(plugin.getMessenger(), "twitter_login_v2/auth_browser");
+        channel = new MethodChannel(plugin.getMessenger(), "twitter_login/auth_browser");
         channel.setMethodCallHandler(this);
         shared.put(this.id, this);
     }
@@ -36,8 +36,8 @@ public class ChromeSafariBrowserManager implements MethodChannel.MethodCallHandl
     @Override
     public void onMethodCall(final MethodCall call, @NotNull final MethodChannel.Result result) {
         if ("open".equals(call.method)) {
-            final String id = (String) call.argument("id");
-            String url = (String) call.argument("url");
+            final String id = call.argument("id");
+            String url = call.argument("url");
             open(plugin.getPluginActivity(), id, url, result);
         } else if ("isAvailable".equals(call.method)) {
             result.success(CustomTabActivityHelper.isAvailable(plugin.getPluginActivity()));

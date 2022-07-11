@@ -1,13 +1,13 @@
+package com.maru.twitter_login
+
 import android.app.Activity
 import android.content.Intent
-import com.example.twitter_login_v2.chrome_custom_tabs.ChromeSafariBrowserManager
-import io.flutter.embedding.android.FlutterActivity
-import io.flutter.embedding.engine.FlutterEngine
+import androidx.annotation.NonNull
+import com.maru.twitter_login.chrome_custom_tabs.ChromeSafariBrowserManager
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
-import io.flutter.embedding.engine.plugins.util.GeneratedPluginRegister
 import io.flutter.plugin.common.*
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
@@ -15,8 +15,8 @@ import io.flutter.plugin.common.EventChannel.EventSink
 import io.flutter.plugin.common.EventChannel.StreamHandler
 import io.flutter.plugin.common.PluginRegistry.NewIntentListener
 
-/** TwitterLoginV2Plugin */
-public class TwitterLoginV2Plugin : FlutterActivity(), FlutterPlugin, MethodCallHandler, ActivityAware, NewIntentListener {
+/** TwitterLoginPlugin */
+class TwitterLoginPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, NewIntentListener {
     companion object {
         private const val CHANNEL = "twitter_login"
         private const val EVENT_CHANNEL = "twitter_login/event"
@@ -34,11 +34,6 @@ public class TwitterLoginV2Plugin : FlutterActivity(), FlutterPlugin, MethodCall
     private var chromeCustomTabManager: ChromeSafariBrowserManager? = null
     var messenger: BinaryMessenger? = null
     var pluginActivity: Activity? = null
-
-    override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
-        super.configureFlutterEngine(flutterEngine)
-        GeneratedPluginRegister.registerGeneratedPlugins(flutterEngine)
-    }
 
     override fun onMethodCall(call: MethodCall, result: Result) {
         when (call.method) {
@@ -71,11 +66,13 @@ public class TwitterLoginV2Plugin : FlutterActivity(), FlutterPlugin, MethodCall
         })
     }
 
-    override fun onNewIntent(intent: Intent?): Boolean {
-        if (scheme == intent!!.data?.scheme) {
+    override fun onNewIntent(@NonNull intent: Intent): Boolean {
+        if (scheme == intent.data?.scheme) {
             eventSink?.success(mapOf("type" to "url", "url" to intent.data?.toString()))
+            return true
         }
-        return true
+
+        return false
     }
 
     override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {

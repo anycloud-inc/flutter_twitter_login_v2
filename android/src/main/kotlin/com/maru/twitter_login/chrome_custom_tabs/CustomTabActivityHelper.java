@@ -1,4 +1,4 @@
-package com.example.twitter_login_v2.chrome_custom_tabs;
+package com.maru.twitter_login.chrome_custom_tabs;
 
 import android.app.Activity;
 import android.net.Uri;
@@ -10,9 +10,9 @@ import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.browser.customtabs.CustomTabsServiceConnection;
 import androidx.browser.customtabs.CustomTabsSession;
 
-import com.example.twitter_login_v2.customtabsclient.CustomTabsHelper;
-import com.example.twitter_login_v2.customtabsclient.ServiceConnection;
-import com.example.twitter_login_v2.customtabsclient.ServiceConnectionCallback;
+import com.maru.twitter_login.customtabsclient.CustomTabsHelper;
+import com.maru.twitter_login.customtabsclient.ServiceConnection;
+import com.maru.twitter_login.customtabsclient.ServiceConnectionCallback;
 
 import java.util.List;
 
