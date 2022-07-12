@@ -43,7 +43,7 @@ public class ChromeCustomTabsActivity extends Activity implements MethodChannel.
 
         // Create a methodChannel for each Activity.
         id = bundle.getString("id");
-        channel = new MethodChannel(manager.plugin.getMessenger(), "twitter_login/auth_browser_" + id);
+        channel = new MethodChannel(manager.plugin.getMessenger(), "twitter_login_v2/auth_browser_" + id);
         channel.setMethodCallHandler(this);
 
         final String url = bundle.getString("url");

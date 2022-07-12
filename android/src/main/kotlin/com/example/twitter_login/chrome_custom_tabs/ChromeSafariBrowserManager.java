@@ -28,7 +28,7 @@ public class ChromeSafariBrowserManager implements MethodChannel.MethodCallHandl
     public ChromeSafariBrowserManager(final TwitterLoginPlugin plugin) {
         this.id = UUID.randomUUID().toString();
         this.plugin = plugin;
-        channel = new MethodChannel(plugin.getMessenger(), "twitter_login/auth_browser");
+        channel = new MethodChannel(plugin.getMessenger(), "twitter_login_v2/auth_browser");
         channel.setMethodCallHandler(this);
         shared.put(this.id, this);
     }
