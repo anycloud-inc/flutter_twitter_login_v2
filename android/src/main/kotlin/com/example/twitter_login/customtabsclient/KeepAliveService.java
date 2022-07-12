@@ -1,6 +1,11 @@
-package com.example.twitter_login_v2.customtabsclient;
+package com.example.twitter_login.customtabsclient;
 
-import androidx.browser.customtabs.CustomTabsClient;
+import android.app.Service;
+import android.content.Intent;
+import android.os.Binder;
+import android.os.IBinder;
+
+import androidx.annotation.Nullable;
 
 // Copyright 2015 Google Inc. All Rights Reserved.
 //
@@ -15,19 +20,12 @@ import androidx.browser.customtabs.CustomTabsClient;
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+public class KeepAliveService extends Service {
+    private static final Binder sBinder = new Binder();
 
-/**
- * Callback for events when connecting and disconnecting from Custom Tabs Service.
- */
-public interface ServiceConnectionCallback {
-    /**
-     * Called when the service is connected.
-     * @param client a CustomTabsClient
-     */
-    void onServiceConnected(CustomTabsClient client);
-
-    /**
-     * Called when the service is disconnected.
-     */
-    void onServiceDisconnected();
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return sBinder;
+    }
 }

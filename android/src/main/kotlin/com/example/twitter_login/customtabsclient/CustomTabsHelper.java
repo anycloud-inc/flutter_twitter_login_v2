@@ -1,7 +1,8 @@
-package com.example.twitter_login_v2.customtabsclient;/*
- * Copyright (c) 2015 Zhang Hai <Dreaming.in.Code.ZH@Gmail.com>
- * All Rights Reserved.
- */
+package com.example.twitter_login.customtabsclient;/*
+                                                   * Copyright (c) 2015 Zhang Hai <Dreaming.in.Code.ZH@Gmail.com>
+                                                   * All Rights Reserved.
+                                                   */
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -38,7 +39,8 @@ public class CustomTabsHelper {
     static final String BETA_PACKAGE = "com.chrome.beta";
     static final String DEV_PACKAGE = "com.chrome.dev";
     static final String LOCAL_PACKAGE = "com.google.android.apps.chrome";
-    // HACK: Using a StringBuilder prevents Jetifier from tempering with our constants.
+    // HACK: Using a StringBuilder prevents Jetifier from tempering with our
+    // constants.
     @SuppressWarnings("StringBufferReplaceableByString")
     private static final String EXTRA_CUSTOM_TABS_KEEP_ALIVE = new StringBuilder("android")
             .append(".support.customtabs.extra.KEEP_ALIVE").toString();
@@ -48,7 +50,8 @@ public class CustomTabsHelper {
 
     private static String sPackageNameToUse;
 
-    private CustomTabsHelper() {}
+    private CustomTabsHelper() {
+    }
 
     public static void addKeepAliveExtra(Context context, Intent intent) {
         Intent keepAliveIntent = new Intent().setClassName(
@@ -57,17 +60,21 @@ public class CustomTabsHelper {
     }
 
     /**
-     * Goes through all apps that handle VIEW intents and have a warmup service. Picks
-     * the one chosen by the user if there is one, otherwise makes a best effort to return a
+     * Goes through all apps that handle VIEW intents and have a warmup service.
+     * Picks
+     * the one chosen by the user if there is one, otherwise makes a best effort to
+     * return a
      * valid package name.
      *
      * This is <strong>not</strong> threadsafe.
      *
      * @param context {@link Context} to use for accessing {@link PackageManager}.
-     * @return The package name recommended to use for connecting to custom tabs related components.
+     * @return The package name recommended to use for connecting to custom tabs
+     *         related components.
      */
     public static String getPackageNameToUse(Context context) {
-        if (sPackageNameToUse != null) return sPackageNameToUse;
+        if (sPackageNameToUse != null)
+            return sPackageNameToUse;
 
         PackageManager pm = context.getPackageManager();
         // Get default VIEW intent handler.
@@ -95,7 +102,8 @@ public class CustomTabsHelper {
             }
         }
 
-        // Now packagesSupportingCustomTabs contains all apps that can handle both VIEW intents
+        // Now packagesSupportingCustomTabs contains all apps that can handle both VIEW
+        // intents
         // and service calls.
         if (packagesSupportingCustomTabs.isEmpty()) {
             sPackageNameToUse = null;
@@ -119,6 +127,7 @@ public class CustomTabsHelper {
 
     /**
      * Used to check whether there is a specialized handler for a given intent.
+     * 
      * @param intent The intent to check with.
      * @return Whether there is a specialized handler for the given intent.
      */
@@ -133,9 +142,12 @@ public class CustomTabsHelper {
             }
             for (ResolveInfo resolveInfo : handlers) {
                 IntentFilter filter = resolveInfo.filter;
-                if (filter == null) continue;
-                if (filter.countDataAuthorities() == 0 || filter.countDataPaths() == 0) continue;
-                if (resolveInfo.activityInfo == null) continue;
+                if (filter == null)
+                    continue;
+                if (filter.countDataAuthorities() == 0 || filter.countDataPaths() == 0)
+                    continue;
+                if (resolveInfo.activityInfo == null)
+                    continue;
                 return true;
             }
         } catch (RuntimeException e) {
@@ -148,6 +160,6 @@ public class CustomTabsHelper {
      * @return All possible chrome package names that provide custom tabs feature.
      */
     public static String[] getPackages() {
-        return new String[]{"", STABLE_PACKAGE, BETA_PACKAGE, DEV_PACKAGE, LOCAL_PACKAGE};
+        return new String[] { "", STABLE_PACKAGE, BETA_PACKAGE, DEV_PACKAGE, LOCAL_PACKAGE };
     }
 }
