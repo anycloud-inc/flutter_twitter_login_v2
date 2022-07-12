@@ -1,4 +1,4 @@
-package com.maru.twitter_login.customtabsclient;
+package com.example.twitter_login.customtabsclient;
 
 import android.content.ComponentName;
 

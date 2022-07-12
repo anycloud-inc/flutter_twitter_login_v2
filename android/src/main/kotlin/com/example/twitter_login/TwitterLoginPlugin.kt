@@ -1,9 +1,9 @@
-package com.maru.twitter_login
+package com.example.twitter_login
 
 import android.app.Activity
 import android.content.Intent
 import androidx.annotation.NonNull
-import com.maru.twitter_login.chrome_custom_tabs.ChromeSafariBrowserManager
+import com.example.twitter_login.chrome_custom_tabs.ChromeSafariBrowserManager
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding

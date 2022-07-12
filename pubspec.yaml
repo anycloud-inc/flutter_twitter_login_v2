@@ -30,7 +30,7 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.maru.twitter_login
+        package: com.example.twitter_login
         pluginClass: TwitterLoginPlugin
       ios:
         pluginClass: TwitterLoginV2Plugin

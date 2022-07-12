@@ -1,4 +1,4 @@
-package com.maru.twitter_login.chrome_custom_tabs;
+package com.example.twitter_login.chrome_custom_tabs;
 
 import android.app.Activity;
 import android.net.Uri;
@@ -10,9 +10,9 @@ import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.browser.customtabs.CustomTabsServiceConnection;
 import androidx.browser.customtabs.CustomTabsSession;
 
-import com.maru.twitter_login.customtabsclient.CustomTabsHelper;
-import com.maru.twitter_login.customtabsclient.ServiceConnection;
-import com.maru.twitter_login.customtabsclient.ServiceConnectionCallback;
+import com.example.twitter_login.customtabsclient.CustomTabsHelper;
+import com.example.twitter_login.customtabsclient.ServiceConnection;
+import com.example.twitter_login.customtabsclient.ServiceConnectionCallback;
 
 import java.util.List;
 
@@ -24,16 +24,18 @@ public class CustomTabActivityHelper implements ServiceConnectionCallback {
     private CustomTabsCallback mCustomTabsCallback;
 
     /**
-     * Opens the URL on a Custom Tab if possible. Otherwise fallsback to opening it on a WebView.
+     * Opens the URL on a Custom Tab if possible. Otherwise fallsback to opening it
+     * on a WebView.
      *
-     * @param activity The host activity.
-     * @param customTabsIntent a CustomTabsIntent to be used if Custom Tabs is available.
-     * @param uri the Uri to be opened.
+     * @param activity         The host activity.
+     * @param customTabsIntent a CustomTabsIntent to be used if Custom Tabs is
+     *                         available.
+     * @param uri              the Uri to be opened.
      */
     public static void openCustomTab(Activity activity,
-                                     CustomTabsIntent customTabsIntent,
-                                     Uri uri,
-                                     int requestCode) {
+            CustomTabsIntent customTabsIntent,
+            Uri uri,
+            int requestCode) {
         customTabsIntent.intent.setData(uri);
         activity.startActivityForResult(customTabsIntent.intent, requestCode);
     }
@@ -44,10 +46,12 @@ public class CustomTabActivityHelper implements ServiceConnectionCallback {
 
     /**
      * Unbinds the Activity from the Custom Tabs Service.
+     * 
      * @param activity the activity that is connected to the service.
      */
     public void unbindCustomTabsService(Activity activity) {
-        if (mConnection == null) return;
+        if (mConnection == null)
+            return;
         activity.unbindService(mConnection);
         mClient = null;
         mCustomTabsSession = null;
@@ -69,7 +73,9 @@ public class CustomTabActivityHelper implements ServiceConnectionCallback {
     }
 
     /**
-     * Register a Callback to be called when connected or disconnected from the Custom Tabs Service.
+     * Register a Callback to be called when connected or disconnected from the
+     * Custom Tabs Service.
+     * 
      * @param connectionCallback
      */
     public void setConnectionCallback(ConnectionCallback connectionCallback) {
@@ -82,13 +88,16 @@ public class CustomTabActivityHelper implements ServiceConnectionCallback {
 
     /**
      * Binds the Activity to the Custom Tabs Service.
+     * 
      * @param activity the activity to be binded to the service.
      */
     public void bindCustomTabsService(Activity activity) {
-        if (mClient != null) return;
+        if (mClient != null)
+            return;
 
         String packageName = CustomTabsHelper.getPackageNameToUse(activity);
-        if (packageName == null) return;
+        if (packageName == null)
+            return;
 
         mConnection = new ServiceConnection(this);
         CustomTabsClient.bindCustomTabsService(activity, packageName, mConnection);
@@ -99,10 +108,12 @@ public class CustomTabActivityHelper implements ServiceConnectionCallback {
      * @return true if call to mayLaunchUrl was accepted.
      */
     public boolean mayLaunchUrl(Uri uri, Bundle extras, List<Bundle> otherLikelyBundles) {
-        if (mClient == null) return false;
+        if (mClient == null)
+            return false;
 
         CustomTabsSession session = getSession();
-        if (session == null) return false;
+        if (session == null)
+            return false;
 
         return session.mayLaunchUrl(uri, extras, otherLikelyBundles);
     }
@@ -111,18 +122,21 @@ public class CustomTabActivityHelper implements ServiceConnectionCallback {
     public void onServiceConnected(CustomTabsClient client) {
         mClient = client;
         mClient.warmup(0L);
-        if (mConnectionCallback != null) mConnectionCallback.onCustomTabsConnected();
+        if (mConnectionCallback != null)
+            mConnectionCallback.onCustomTabsConnected();
     }
 
     @Override
     public void onServiceDisconnected() {
         mClient = null;
         mCustomTabsSession = null;
-        if (mConnectionCallback != null) mConnectionCallback.onCustomTabsDisconnected();
+        if (mConnectionCallback != null)
+            mConnectionCallback.onCustomTabsDisconnected();
     }
 
     /**
-     * A Callback for when the service is connected or disconnected. Use those callbacks to
+     * A Callback for when the service is connected or disconnected. Use those
+     * callbacks to
      * handle UI changes when the service is connected or disconnected.
      */
     public interface ConnectionCallback {

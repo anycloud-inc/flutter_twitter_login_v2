@@ -1,4 +1,4 @@
-group 'com.maru.twitter_login'
+group 'com.example.twitter_login'
 version '1.0-SNAPSHOT'
 
 buildscript {

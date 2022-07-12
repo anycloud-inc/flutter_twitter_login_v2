@@ -1,4 +1,4 @@
-package com.maru.twitter_login.chrome_custom_tabs;
+package com.example.twitter_login.chrome_custom_tabs;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-import com.maru.twitter_login.TwitterLoginPlugin;
+import com.example.twitter_login.TwitterLoginPlugin;
 
 import org.jetbrains.annotations.NotNull;
 
