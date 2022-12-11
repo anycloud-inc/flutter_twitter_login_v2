@@ -11,10 +11,14 @@ class TwitterLoginV2 {
   /// Callback URL
   final String redirectURI;
 
+  /// Scopes
+  final List<String> scopes;
+
   /// constructor
   TwitterLoginV2({
     required this.clientId,
     required this.redirectURI,
+    this.scopes = const ["users.read","tweet.read","follows.read"]
   }) {
     if (this.clientId.isEmpty) {
       throw Exception('clientId is empty');

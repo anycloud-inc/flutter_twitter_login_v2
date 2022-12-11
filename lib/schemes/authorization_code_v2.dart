@@ -27,6 +27,7 @@ class AuthorizationCodeV2 {
   static Future<AuthorizationCodeV2> getAuthorizationCode({
     required String clientId,
     required String redirectURI,
+    List<String> scopes = const ["users.read","tweet.read","follows.read"]
   }) async {
     final state = createCryptoRandomString();
     final codeVerifier = createCryptoRandomString();
@@ -35,6 +36,7 @@ class AuthorizationCodeV2 {
       redirectURI: redirectURI,
       state: state,
       codeVerifier: codeVerifier,
+      scopes: scopes
     );
 
     if (resultURI?.isEmpty ?? true) {
@@ -72,6 +74,7 @@ class AuthorizationCodeV2 {
     required String redirectURI,
     required String state,
     required String codeVerifier,
+    required List<String> scopes
   }) async {
     String? resultURI;
     final scheme = Uri.parse(redirectURI).scheme;
@@ -91,11 +94,31 @@ class AuthorizationCodeV2 {
       });
     }
 
+    StringBuffer scopeUrlBuilder = StringBuffer();
+
+    int legalScopes = 0;
+
+    for(int i = 0; i < scopes.length; i++){
+      if(isValidScope(scope:scopes[i])) {
+        legalScopes+=1;
+        scopeUrlBuilder.write(scopes[i] + "+");
+      }
+    }
+
+    String scopeUrl = scopeUrlBuilder.toString();
+
+    if (legalScopes == 0)
+      scopeUrl = "users.read+tweet.read+follows.read+";
+
+    scopeUrl.substring(0,scopeUrl.length-1);
+
+    print("final scope url: $scopeUrl");
+
     final authorizeURI = '$AUTHORIZE_URI'
         '?response_type=code'
         '&client_id=$clientId'
         '&redirect_uri=$redirectURI'
-        '&scope=users.read+tweet.read+follows.read'
+        '&scope=$scopeUrl'
         '&state=$state'
         '&code_challenge=$codeVerifier'
         '&code_challenge_method=plain';
