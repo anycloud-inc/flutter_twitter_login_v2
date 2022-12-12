@@ -105,8 +105,6 @@ class AuthorizationCodeV2 {
       }
     }
 
-    print('legalscopes $legalScopes');
-
     String scopeUrl = scopeUrlBuilder.toString();
 
     if (legalScopes == 0)
