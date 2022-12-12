@@ -26,11 +26,14 @@ class TwitterLoginV2 {
     if (this.redirectURI.isEmpty) {
       throw Exception('redirectURI is empty');
     }
+
+    print('scopes rcvd: $scopes');
+
   }
 
   Future<AccessTokenV2> loginV2({bool forceLogin = false}) async {
     final authorizationCode = await AuthorizationCodeV2.getAuthorizationCode(
-        clientId: clientId, redirectURI: redirectURI);
+        clientId: clientId, redirectURI: redirectURI, scopes: scopes);
 
     return await AccessTokenV2.getAccessToken(
       clientId: clientId,

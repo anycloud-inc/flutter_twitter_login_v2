@@ -105,14 +105,14 @@ class AuthorizationCodeV2 {
       }
     }
 
+    print('legalscopes $legalScopes');
+
     String scopeUrl = scopeUrlBuilder.toString();
 
     if (legalScopes == 0)
       scopeUrl = "users.read+tweet.read+follows.read+";
 
-    scopeUrl.substring(0,scopeUrl.length-1);
-
-    print("final scope url: $scopeUrl");
+    scopeUrl = scopeUrl.substring(0,scopeUrl.length-1);
 
     final authorizeURI = '$AUTHORIZE_URI'
         '?response_type=code'
