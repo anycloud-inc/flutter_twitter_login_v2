@@ -73,6 +73,7 @@ You need to replace {example} with a Callback URLs.
 final twitterLogin = TwitterLoginV2(
     clientId: "CLIENT_ID", /// Consumer API keys
     redirectURI: "REDIRECT_URI", /// Registered Callback URLs in TwitterApp
+    scopes: ["tweet.read", "tweet.write", "follows.read", "users.read","offline.access"]
 );
 
 final accessToken = await twitterLogin.loginV2();
