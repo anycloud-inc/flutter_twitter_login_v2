@@ -26,9 +26,6 @@ class TwitterLoginV2 {
     if (this.redirectURI.isEmpty) {
       throw Exception('redirectURI is empty');
     }
-
-    print('scopes rcvd: $scopes');
-
   }
 
   Future<AccessTokenV2> loginV2({bool forceLogin = false}) async {
