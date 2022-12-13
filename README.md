@@ -1,6 +1,7 @@
 # twitter_login_v2
 
-![Pub Version](https://img.shields.io/pub/v/twitter_login_v2)
+[![twitter_login_v2 on pub.dev][pub_badge]][pub_link]
+
 
 Flutter Twitter Login Plugin
 
@@ -80,3 +81,7 @@ final accessToken = await twitterLogin.loginV2();
 ```
 
 The scopes that can be specified are available here: https://developer.twitter.com/en/docs/authentication/oauth-2-0/authorization-code
+
+
+[pub_badge]: https://img.shields.io/pub/v/twitter_login_v2.svg
+[pub_link]: https://pub.dev/packages/twitter_login_v2
