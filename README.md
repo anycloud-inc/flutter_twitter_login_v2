@@ -78,3 +78,5 @@ final twitterLogin = TwitterLoginV2(
 
 final accessToken = await twitterLogin.loginV2();
 ```
+
+The scopes that can be specified are available here: https://developer.twitter.com/en/docs/authentication/oauth-2-0/authorization-code
