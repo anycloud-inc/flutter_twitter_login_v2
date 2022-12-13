@@ -94,23 +94,10 @@ class AuthorizationCodeV2 {
       });
     }
 
-    StringBuffer scopeUrlBuilder = StringBuffer();
+    final scopeUrl = scopes.where((scope) => isValidScope(scope: scope)).join('+');
 
-    int legalScopes = 0;
-
-    for(int i = 0; i < scopes.length; i++){
-      if(isValidScope(scope:scopes[i])) {
-        legalScopes+=1;
-        scopeUrlBuilder.write(scopes[i] + "+");
-      }
-    }
-
-    String scopeUrl = scopeUrlBuilder.toString();
-
-    if (legalScopes == 0)
-      scopeUrl = "users.read+tweet.read+follows.read+";
-
-    scopeUrl = scopeUrl.substring(0,scopeUrl.length-1);
+    if (scopeUrl.length == 0)
+      throw new NoValidScopeSpecified();
 
     final authorizeURI = '$AUTHORIZE_URI'
         '?response_type=code'
