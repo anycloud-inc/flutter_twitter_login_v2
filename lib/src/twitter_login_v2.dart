@@ -11,10 +11,14 @@ class TwitterLoginV2 {
   /// Callback URL
   final String redirectURI;
 
+  /// Scopes
+  final List<String> scopes;
+
   /// constructor
   TwitterLoginV2({
     required this.clientId,
     required this.redirectURI,
+    this.scopes = const ["users.read","tweet.read","follows.read"]
   }) {
     if (this.clientId.isEmpty) {
       throw Exception('clientId is empty');
@@ -26,7 +30,7 @@ class TwitterLoginV2 {
 
   Future<AccessTokenV2> loginV2({bool forceLogin = false}) async {
     final authorizationCode = await AuthorizationCodeV2.getAuthorizationCode(
-        clientId: clientId, redirectURI: redirectURI);
+        clientId: clientId, redirectURI: redirectURI, scopes: scopes);
 
     return await AccessTokenV2.getAccessToken(
       clientId: clientId,

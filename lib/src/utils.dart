@@ -7,6 +7,8 @@ const AUTHORIZE_URI = 'https://twitter.com/i/oauth2/authorize';
 
 const ACCESS_TOKEN_URI = 'https://api.twitter.com/2/oauth2/token';
 
+const ALLOWED_SCOPES = ["tweet.read","tweet.write","tweet.moderate.write","users.read","follows.read","follows.write","offline.access","space.read","mute.read","mute.write","like.read","like.write","list.read","list.write","block.read","block.write","bookmark.read","bookmark.write"];
+
 /// send http request
 Future<Map<String, dynamic>>? httpPost(
   String url,
@@ -35,4 +37,10 @@ String createCryptoRandomString([int length = 8]) {
 
 extension MapExt on Map {
   T? get<T>(String key) => this.containsKey(key) ? this[key] as T : null;
+}
+
+bool isValidScope({required String scope}){
+
+  return (ALLOWED_SCOPES.contains(scope));
+
 }

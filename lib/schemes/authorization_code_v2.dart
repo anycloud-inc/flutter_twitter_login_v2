@@ -27,6 +27,7 @@ class AuthorizationCodeV2 {
   static Future<AuthorizationCodeV2> getAuthorizationCode({
     required String clientId,
     required String redirectURI,
+    List<String> scopes = const ["users.read","tweet.read","follows.read"]
   }) async {
     final state = createCryptoRandomString();
     final codeVerifier = createCryptoRandomString();
@@ -35,6 +36,7 @@ class AuthorizationCodeV2 {
       redirectURI: redirectURI,
       state: state,
       codeVerifier: codeVerifier,
+      scopes: scopes
     );
 
     if (resultURI?.isEmpty ?? true) {
@@ -72,6 +74,7 @@ class AuthorizationCodeV2 {
     required String redirectURI,
     required String state,
     required String codeVerifier,
+    required List<String> scopes
   }) async {
     String? resultURI;
     final scheme = Uri.parse(redirectURI).scheme;
@@ -91,11 +94,16 @@ class AuthorizationCodeV2 {
       });
     }
 
+    final scopeUrl = scopes.where((scope) => isValidScope(scope: scope)).join('+');
+
+    if (scopeUrl.length == 0)
+      throw new NoValidScopeSpecified();
+
     final authorizeURI = '$AUTHORIZE_URI'
         '?response_type=code'
         '&client_id=$clientId'
         '&redirect_uri=$redirectURI'
-        '&scope=users.read+tweet.read+follows.read'
+        '&scope=$scopeUrl'
         '&state=$state'
         '&code_challenge=$codeVerifier'
         '&code_challenge_method=plain';
