@@ -8,7 +8,7 @@ Flutter Twitter Login Plugin
 ## Install
 
 ```
-twitter_login_v2: ^0.0.2
+twitter_login_v2: ^0.0.3
 ```
 
 ## Android Configuration
